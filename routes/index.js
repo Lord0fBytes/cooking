@@ -1,9 +1,7 @@
-var express = require('express');
-var router = express.Router();
+var configValues = require('../config');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
-module.exports = router;
+module.exports = {
+  getDbConnectionString: function() {
+    return 'mongodb://' + configValues.uname + ':' + configValues.pwd + '@ds111441.mlab.com:11441/cookingnode';
+  }
+}
