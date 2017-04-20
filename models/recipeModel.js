@@ -3,13 +3,13 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var recipeSchema = new Schema({
-  recipename: String,
+  recipeName: String,
   recipeType: String,
-  cookTime: int,
-  prepTime: int,
+  cookTime: Number,
+  prepTime: Number,
   mainIngr: String
 });
 
 var recipes = mongoose.model('recipes', recipeSchema);
 
-model.exports = recipes;
+module.exports = recipes;

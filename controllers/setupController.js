@@ -1,8 +1,32 @@
-var mongoose = require('mongoose');
+var recipes = require('..//models/recipeModel');
 
-mongoose.connect('mongodb://cn_user:Jkht123!$@ds111441.mlab.com:11441/cookingnode');
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  //Connected!
-});
+module.exports = function(app) {
+  app.get('/api/setupRecipes', function(req, res) {
+    var seedData = [
+      {
+        recipeName: 'Buffalo Chicken',
+        recipeType: 'Entree',
+        cookTime: 30,
+        prepTime: 10,
+        mainIngr: 'chicken'
+      },
+      {
+        recipeName: 'Steak Salad',
+        recipeType: 'Entree',
+        cookTime: 10,
+        prepTime: 10,
+        mainIngr: 'steak'
+      },
+      {
+        recipeName: 'Lemony Chicken Orzo',
+        recipeType: 'Entree',
+        cookTime: 30,
+        prepTime: 25,
+        mainIngr: 'chicken'
+      }
+    ];
+    recipes.create(seedData, function(err, results){
+      res.send(results);
+    });
+  });
+}
